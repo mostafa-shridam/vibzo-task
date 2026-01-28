@@ -6,8 +6,7 @@ import 'package:company_task/core/enums/constants_enums.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 
 import '../models/user_model.dart';
 import '../../data/services/local_auth_service.dart';
@@ -16,19 +15,16 @@ import 'auth_repository.dart';
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final FacebookAuth _facebookAuth;
   final FirebaseFirestore _firestore;
   final LocalAuthService _localAuthService;
 
   AuthRepositoryImpl({
     FirebaseAuth? firebaseAuth,
     GoogleSignIn? googleSignIn,
-    FacebookAuth? facebookAuth,
     FirebaseFirestore? firestore,
     LocalAuthService? localAuthService,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
        _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
-       _facebookAuth = facebookAuth ?? FacebookAuth.instance,
        _firestore = firestore ?? FirebaseFirestore.instance,
        _localAuthService = localAuthService ?? LocalAuthService();
 
@@ -67,47 +63,6 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  @override
-  Future<UserCredential> signInWithFacebook() async {
-    try {
-      final LoginResult result = await _facebookAuth.login();
-
-      if (result.status != LoginStatus.success) {
-        throw FirebaseAuthException(
-          code: 'cancelled',
-          message: 'Facebook sign in was cancelled',
-        );
-      }
-
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(result.accessToken!.tokenString);
-
-      return await _firebaseAuth.signInWithCredential(facebookAuthCredential);
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<UserCredential> signInWithApple() async {
-    try {
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      final oauthCredential = OAuthProvider('apple.com').credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
-      );
-
-      return await _firebaseAuth.signInWithCredential(oauthCredential);
-    } catch (e) {
-      rethrow;
-    }
-  }
 
   @override
   Future<String> sendOtp(String phoneNumber) async {
@@ -212,7 +167,6 @@ class AuthRepositoryImpl implements AuthRepository {
       await Future.wait([
         _firebaseAuth.signOut(),
         _googleSignIn.signOut(),
-        _facebookAuth.logOut(),
         _localAuthService.clearUser(),
       ]);
     } catch (e) {

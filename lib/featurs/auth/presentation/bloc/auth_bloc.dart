@@ -12,8 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     : _authRepository = authRepository,
       super(const AuthInitial()) {
     on<SignInWithGoogle>(_onSignInWithGoogle);
-    on<SignInWithFacebook>(_onSignInWithFacebook);
-    on<SignInWithApple>(_onSignInWithApple);
+
     on<SendOtp>(_onSendOtp);
     on<VerifyOtp>(_onVerifyOtp);
     on<SignOut>(_onSignOut);
@@ -27,38 +26,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthLoading());
     try {
       final userCredential = await _authRepository.signInWithGoogle();
-      final userModel = await _authRepository.provisionUser(
-        userCredential.user!,
-      );
-      emit(AuthSuccess(userModel));
-    } catch (e) {
-      emit(AuthFailure(AuthErrorHandler.getErrorMessage(e)));
-    }
-  }
-
-  Future<void> _onSignInWithFacebook(
-    SignInWithFacebook event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(const AuthLoading());
-    try {
-      final userCredential = await _authRepository.signInWithFacebook();
-      final userModel = await _authRepository.provisionUser(
-        userCredential.user!,
-      );
-      emit(AuthSuccess(userModel));
-    } catch (e) {
-      emit(AuthFailure(AuthErrorHandler.getErrorMessage(e)));
-    }
-  }
-
-  Future<void> _onSignInWithApple(
-    SignInWithApple event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(const AuthLoading());
-    try {
-      final userCredential = await _authRepository.signInWithApple();
       final userModel = await _authRepository.provisionUser(
         userCredential.user!,
       );

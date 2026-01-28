@@ -61,7 +61,9 @@ class LoginPage extends StatelessWidget {
 
                 CustomButton(
                   text: 'Continue with Apple',
-                  onPressed: () {},
+                  onPressed: () {
+                    showSnackBar(message: 'Apple is not available yet');
+                  },
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.apple,
                 ),
@@ -75,13 +77,17 @@ class LoginPage extends StatelessWidget {
                 ),
                 CustomButton(
                   text: 'Continue with Snapchat',
-                  onPressed: () {},
+                  onPressed: () {
+                    showSnackBar(message: 'Snapchat is not available yet');
+                  },
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.snapchat,
                 ),
                 CustomButton(
                   text: 'Continue with Facebook',
-                  onPressed: () {},
+                  onPressed: () {
+                    showSnackBar(message: 'Facebook is not available yet');
+                  },
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.facebook,
                 ),

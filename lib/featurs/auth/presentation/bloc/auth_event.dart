@@ -11,14 +11,6 @@ class SignInWithGoogle extends AuthEvent {
   const SignInWithGoogle();
 }
 
-class SignInWithFacebook extends AuthEvent {
-  const SignInWithFacebook();
-}
-
-class SignInWithApple extends AuthEvent {
-  const SignInWithApple();
-}
-
 class SendOtp extends AuthEvent {
   final String phoneNumber;
 

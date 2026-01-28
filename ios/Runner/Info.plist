@@ -57,24 +57,6 @@
 		</dict>
 	</array>
 
-	<!-- ================= FACEBOOK ================= -->
-
-	<key>FacebookAppID</key>
-	<string>YOUR_FB_ID</string>
-
-	<key>FacebookClientToken</key>
-	<string>YOUR_FB_CLIENT_TOKEN</string>
-
-	<key>FacebookDisplayName</key>
-	<string>Company Task</string>
-
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
-
 	<!-- ================= UI ================= -->
 
 	<key>UISupportedInterfaceOrientations</key>

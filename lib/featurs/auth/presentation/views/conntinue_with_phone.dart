@@ -35,7 +35,10 @@ class _PhoneLoginState extends State<PhoneLogin> {
       bloc: context.read<AuthBloc>(),
       listener: (context, state) {
         if (state is AuthFailure) {
-          showSnackBar(message: state.message, type: SnackBarType.error);
+          showSnackBar(
+            message: state.message,
+            type: SnackBarType.error,
+          );
           log('AuthFailure: ${state.message}');
         }
         if (state is AuthSuccess) {
@@ -85,12 +88,18 @@ class _PhoneLoginState extends State<PhoneLogin> {
                         child: InkWell(
                           onTap: () {
                             if (index == 0) {
-                              context.read<AuthBloc>().add(SignInWithApple());
+                              showSnackBar(
+                                message: 'Apple is not available yet',
+                              );
                             } else if (index == 1) {
                               context.read<AuthBloc>().add(SignInWithGoogle());
-                            } else if (index == 3) {
-                              context.read<AuthBloc>().add(
-                                SignInWithFacebook(),
+                            } else if (index == 2) {
+                              showSnackBar(
+                                message: 'Snapchat is not available yet',
+                              );
+                            } else {
+                              showSnackBar(
+                                message: 'Facebook is not available yet',
                               );
                             }
                           },
