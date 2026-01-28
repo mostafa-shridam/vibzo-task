@@ -23,10 +23,10 @@ class GeneralScaffoldAuth extends StatelessWidget {
         children: [
           SingleChildScrollView(
             padding: EdgeInsets.only(
-              top: title != null && title!.isNotEmpty ? 100 : 70,
+              top: 130,
               left: 16,
               right: 16,
-              bottom: 16,
+              bottom: 36,
             ),
             child: child,
           ),

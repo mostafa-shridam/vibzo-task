@@ -69,7 +69,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               ],
             ),
 
-            SizedBox(height: MediaQuery.of(context).size.height * 0.7),
+            const SizedBox(height: 560),
             CustomButton(
               icon: Assets.images.svgs.loginArrow,
               text: 'Continue',
@@ -80,7 +80,6 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               },
               textColor: AppColors.white,
             ),
-            const SizedBox(height: 32),
           ],
         ),
       ),

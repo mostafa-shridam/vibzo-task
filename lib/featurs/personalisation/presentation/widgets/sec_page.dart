@@ -15,7 +15,6 @@ class SecPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 12,
       children: [
-        const SizedBox(height: 100),
         Text('Languages You Speak'),
         Wrap(
           children: List.generate(
@@ -35,12 +34,11 @@ class SecPage extends StatelessWidget {
           ),
         ),
 
-        const Spacer(),
+        const SizedBox(height: 360),
         CustomButton(
           text: 'Continue',
           onPressed: () {
             context.go(HomePage.routeName);
-            
           },
           textColor: AppColors.white,
         ),

@@ -44,7 +44,6 @@ class _OtpPageState extends State<OtpPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
                 PhoneTextField(phoneController: phoneController),
                 if (!showOtp) ...[
                   Text(
@@ -68,7 +67,7 @@ class _OtpPageState extends State<OtpPage> {
                   ),
                 ],
 
-                SizedBox(height: MediaQuery.of(context).size.height * 0.65),
+              const  SizedBox(height: 520),
 
                 CustomButton(
                   icon: Assets.images.svgs.loginArrow,

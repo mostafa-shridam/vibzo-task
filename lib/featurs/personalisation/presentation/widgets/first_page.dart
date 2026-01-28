@@ -28,7 +28,6 @@ class _FirstPageState extends State<FirstPage> {
         child: Column(
           spacing: 12,
           children: [
-            const SizedBox(height: 20),
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -108,7 +107,7 @@ class _FirstPageState extends State<FirstPage> {
               },
               readOnly: true,
             ),
-            const SizedBox(height: 120),
+            const SizedBox(height: 110),
             CustomButton(
               text: 'Continue',
               onPressed: () {
