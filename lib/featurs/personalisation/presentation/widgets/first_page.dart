@@ -92,7 +92,7 @@ class _FirstPageState extends State<FirstPage> {
                 });
               },
               controller: birthController,
-              hintText: 'DD/MM/YY',
+              hintText: 'DD/MM/YYYY',
               labelText: 'Your BirthDate',
               validator: (v) {
                 if (v?.isEmpty ?? false) {
