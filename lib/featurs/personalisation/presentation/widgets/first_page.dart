@@ -107,7 +107,11 @@ class _FirstPageState extends State<FirstPage> {
               text: 'Continue',
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  widget.onNext.call();
+                  if (genderValue.value == null) {
+                    showSnackBar(message: 'Please select your gender');
+                  } else {
+                    widget.onNext.call();
+                  }
                 }
               },
               textColor: AppColors.white,

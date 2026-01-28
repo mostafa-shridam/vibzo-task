@@ -14,7 +14,6 @@ class MyCheckBox extends StatelessWidget {
     return ValueListenableBuilder<VerifyMethod?>(
       valueListenable: verifyMethod,
       builder: (context, selected, _) {
-        if (selected != null) return SizedBox.shrink();
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -63,10 +62,10 @@ class _RadioItem extends StatelessWidget {
       onTap: () => onChanged(value),
       child: Row(
         children: [
-          Radio<VerifyMethod>(
-            value: value,
+          RadioGroup<VerifyMethod>(
             groupValue: groupValue,
             onChanged: (v) => onChanged(v!),
+            child: Radio<VerifyMethod>(value: value),
           ),
           Text(label),
         ],

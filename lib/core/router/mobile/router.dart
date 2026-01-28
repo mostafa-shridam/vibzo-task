@@ -72,7 +72,10 @@ class MobileRouting extends AppRoutingBase {
         GoRoute(
           path: OtpPage.routeName,
           name: OtpPage.routeName,
-          builder: (context, state) => OtpPage(phone: state.extra as String),
+          builder: (context, state) => BlocProvider(
+            create: (context) => AuthBloc(authRepository: AuthRepositoryImpl()),
+            child: OtpPage(phone: state.extra as String),
+          ),
         ),
 
         GoRoute(

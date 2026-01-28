@@ -32,7 +32,6 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return GeneralScaffoldAuth(
       title: 'Let’s Setup Your Profile',
       showBackButton: false,

@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
-import 'ipad/router.dart';
 import 'mobile/router.dart';
 import 'web/router.dart';
 

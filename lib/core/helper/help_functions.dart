@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../constants.dart';
-import '../theme/app_colors.dart';
 
 String getLanguageCodeHelper() {
   if (kIsWeb) {

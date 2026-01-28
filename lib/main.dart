@@ -12,7 +12,6 @@ import 'core/local_services/local_storage.dart';
 import 'core/router/index.dart';
 import 'core/scroll_behavior.dart';
 import 'core/services/life_cycle.dart';
-import 'core/services/supabase.dart';
 import 'core/theme/theme_style.dart';
 import 'firebase_options.dart';
 import 'generated/codegen_loader.g.dart';
@@ -32,7 +31,6 @@ Future<void> firstInit() async {
   try {
     await Future.wait([
       Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
-      SupabaseService.initSupabase(),
     ]);
   } catch (e) {
     log('Cloud Services Error: $e');

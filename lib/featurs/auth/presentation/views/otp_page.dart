@@ -1,3 +1,4 @@
+import 'package:company_task/core/helper/help_functions.dart';
 import 'package:company_task/featurs/auth/presentation/views/create_password.dart';
 import 'package:company_task/featurs/auth/presentation/views/widgets/phone_text_field.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ class _OtpPageState extends State<OtpPage> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
   @override
   void initState() {
     super.initState();
@@ -36,64 +36,73 @@ class _OtpPageState extends State<OtpPage> {
       title: 'Verify Your Phone Number',
       child: Form(
         key: _formKey,
-        child: Column(
-          spacing: 12,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 100),
-            PhoneTextField(phoneController: phoneController),
-            ValueListenableBuilder(
-              valueListenable: verifyMethod,
+        child: ValueListenableBuilder<bool>(
+          valueListenable: showOtpField,
+          builder: (context, showOtp, _) {
+            return Column(
+              spacing: 12,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 100),
+                PhoneTextField(phoneController: phoneController),
 
-              builder: (context, selected, _) {
-                if (selected != null) {
-                  return const SizedBox.shrink();
-                }
-                return Text(
-                  'How do you want to be verified?',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                );
-              },
-            ),
-            MyCheckBox(),
-            ValueListenableBuilder<VerifyMethod?>(
-              valueListenable: verifyMethod,
-              builder: (context, selected, _) {
-                if (selected == null) {
-                  return const SizedBox.shrink();
-                }
+                // الاختيار يظل ظاهر لغاية ما المستخدم يضغط Continue
+                if (!showOtp) ...[
+                  Text(
+                    'How do you want to be verified?',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  MyCheckBox(),
+                ],
 
-                return MyTextField(
-                  labelText: 'Verification Code',
-                  controller: otpController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your verification code';
+                // حقل OTP يظهر بعد الضغط على Continue
+                if (showOtp) ...[
+                  MyTextField(
+                    labelText: 'Verification Code',
+                    controller: otpController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your verification code';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+
+                const Spacer(),
+
+                CustomButton(
+                  icon: Assets.images.svgs.loginArrow,
+                  text: 'Continue',
+                  onPressed: () {
+                    if (verifyMethod.value != null) {
+                      showOtpField.value = true;
+
+                      if (_formKey.currentState!.validate()) {
+                        if (phoneController.text.isNotEmpty &&
+                            otpController.text.isNotEmpty) {
+                          context.pushNamed(CreatePasswordPage.routeName);
+                        }
+                      }
+                    } else {
+                      showSnackBar(
+                        message: 'Please select a verification method',
+                      );
                     }
-                    return null;
                   },
-                );
-              },
-            ),
-
-            Spacer(),
-            CustomButton(
-              icon: Assets.images.svgs.loginArrow,
-              text: 'Continue',
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  context.pushNamed(CreatePasswordPage.routeName);
-                }
-              },
-              textColor: AppColors.white,
-            ),
-            const SizedBox(height: 32),
-          ],
+                  textColor: AppColors.white,
+                ),
+                const SizedBox(height: 32),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
+
+final ValueNotifier<bool> showOtpField = ValueNotifier(false);
