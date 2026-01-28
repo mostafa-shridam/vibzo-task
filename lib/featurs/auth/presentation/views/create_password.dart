@@ -28,7 +28,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
         child: Column(
           spacing: 12,
           children: [
-            SizedBox(height: 100),
+            const SizedBox(height: 20),
             ValueListenableBuilder(
               valueListenable: hidePassword,
               builder: (context, value, child) {
@@ -69,7 +69,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               ],
             ),
 
-            const Spacer(),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.7),
             CustomButton(
               icon: Assets.images.svgs.loginArrow,
               text: 'Continue',

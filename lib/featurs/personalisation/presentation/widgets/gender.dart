@@ -27,10 +27,9 @@ class GenderSelector extends StatelessWidget {
             final icon = gender.values.elementAt(index);
             final value = key == 'Male' ? GenderValue.male : GenderValue.female;
 
-            // ألوان ثابتة لكل نوع
             final baseColor = value == GenderValue.male
-                ? const Color(0xff175CD3) // أزرق للذكر
-                : AppColors.primaryColor; // لون الأنثى
+                ? const Color(0xff175CD3)
+                : AppColors.primaryColor;
 
             final isSelected = selected == value;
 

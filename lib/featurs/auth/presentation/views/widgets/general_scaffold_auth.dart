@@ -16,16 +16,26 @@ class GeneralScaffoldAuth extends StatelessWidget {
   final String? title;
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
         children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.only(
+              top: title != null && title!.isNotEmpty ? 100 : 70,
+              left: 16,
+              right: 16,
+              bottom: 16,
+            ),
+            child: child,
+          ),
           Align(
             alignment: Alignment.topCenter,
             child: Container(
               width: 36,
               height: 4,
-              margin: const EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 40),
               decoration: BoxDecoration(
                 color: const Color(0xffD2D6DB),
                 borderRadius: BorderRadius.circular(2),
@@ -52,7 +62,7 @@ class GeneralScaffoldAuth extends StatelessWidget {
                 onPressed: () => context.pop(),
                 icon: Icon(
                   Icons.arrow_back_ios_new,
-                  color: AppColors.black,
+                  color: isDark ? AppColors.white : AppColors.black,
                   size: 16,
                 ),
               ),
@@ -66,12 +76,11 @@ class GeneralScaffoldAuth extends StatelessWidget {
                 radius: 20,
                 backgroundColor: AppColors.accentColor,
                 child: IconButton(
-                  onPressed: () => context.pop(),
+                  onPressed: (){},
                   icon: Icon(Icons.close, color: AppColors.black),
                 ),
               ),
             ),
-          Padding(padding: const EdgeInsets.all(16.0), child: child),
         ],
       ),
     );

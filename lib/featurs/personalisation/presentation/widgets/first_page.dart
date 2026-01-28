@@ -22,21 +22,25 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-
-    return SingleChildScrollView(
-      child: Form(
-        key: _formKey,
+    return Form(
+      key: _formKey,
+      child: SingleChildScrollView(
         child: Column(
           spacing: 12,
           children: [
-            const SizedBox(height: 100),
+            const SizedBox(height: 20),
             Stack(
               clipBehavior: Clip.none,
               children: [
                 CircleAvatar(
                   backgroundColor: AppColors.accentColor,
                   radius: 48,
-                  child: Text('AB', style: textTheme.displayMedium),
+                  child: Text(
+                    'AB',
+                    style: textTheme.displayMedium?.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
                 ),
                 Positioned(
                   bottom: -12,
@@ -88,7 +92,9 @@ class _FirstPageState extends State<FirstPage> {
                   final day = v?.day.toString().padLeft(2, '0');
                   final month = v?.month.toString().padLeft(2, '0');
                   final year = v?.year.toString();
-                  birthController.text = '$day/$month/$year';
+                  if (day != null && month != null && year != null) {
+                    birthController.text = '$day/$month/$year';
+                  }
                 });
               },
               controller: birthController,
@@ -102,7 +108,7 @@ class _FirstPageState extends State<FirstPage> {
               },
               readOnly: true,
             ),
-            const SizedBox(height: 140),
+            const SizedBox(height: 120),
             CustomButton(
               text: 'Continue',
               onPressed: () {
@@ -116,7 +122,7 @@ class _FirstPageState extends State<FirstPage> {
               },
               textColor: AppColors.white,
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
           ],
         ),
       ),

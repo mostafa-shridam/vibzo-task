@@ -35,13 +35,18 @@ class _PersonalisationPageState extends State<PersonalisationPage> {
     return GeneralScaffoldAuth(
       title: 'Let’s Setup Your Profile',
       showBackButton: false,
-      child: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          FirstPage(onNext: goToNextPage),
-          SecPage(),
-        ],
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 1.1,
+        child: PageView(
+          controller: _pageController,
+          scrollDirection: Axis.horizontal,
+
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            FirstPage(onNext: goToNextPage),
+            SecPage(),
+          ],
+        ),
       ),
     );
   }

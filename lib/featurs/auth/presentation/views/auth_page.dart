@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('Welcome to', style: theme.displayLarge),
-                const SizedBox(height: 24),
+                const SizedBox(height: 20),
                 SvgPicture.asset(
                   Assets.images.splash.logo,
                   width: 140,
@@ -64,6 +64,8 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     showSnackBar(message: 'Apple is not available yet');
                   },
+                  textColor: AppColors.black,
+
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.apple,
                 ),
@@ -72,6 +74,8 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     context.read<AuthBloc>().add(SignInWithGoogle());
                   },
+                  textColor: AppColors.black,
+
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.google,
                 ),
@@ -81,6 +85,8 @@ class LoginPage extends StatelessWidget {
                     showSnackBar(message: 'Snapchat is not available yet');
                   },
                   backgroundColor: AppColors.accentColor,
+                  textColor: AppColors.black,
+
                   icon: Assets.images.svgs.snapchat,
                 ),
                 CustomButton(
@@ -88,6 +94,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     showSnackBar(message: 'Facebook is not available yet');
                   },
+                  textColor: AppColors.black,
                   backgroundColor: AppColors.accentColor,
                   icon: Assets.images.svgs.facebook,
                 ),

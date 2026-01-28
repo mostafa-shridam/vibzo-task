@@ -35,10 +35,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
       bloc: context.read<AuthBloc>(),
       listener: (context, state) {
         if (state is AuthFailure) {
-          showSnackBar(
-            message: state.message,
-            type: SnackBarType.error,
-          );
+          showSnackBar(message: state.message, type: SnackBarType.error);
           log('AuthFailure: ${state.message}');
         }
         if (state is AuthSuccess) {
@@ -57,6 +54,8 @@ class _PhoneLoginState extends State<PhoneLogin> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 12,
                 children: [
+                  const SizedBox(height: 20),
+
                   PhoneTextField(phoneController: _phoneController),
                   const SizedBox(height: 340),
                   CustomButton(

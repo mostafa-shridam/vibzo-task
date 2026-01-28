@@ -31,7 +31,7 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
         child: Column(
           spacing: 12,
           children: [
-            const SizedBox(height: 100),
+            const SizedBox(height: 20),
             PhoneTextField(phoneController: _phoneController),
             ValueListenableBuilder(
               valueListenable: hidePassword,
@@ -62,7 +62,7 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
                 );
               },
             ),
-            const Spacer(),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.5),
             ValueListenableBuilder(
               valueListenable: valueListenable,
               builder: (context, value, child) {
@@ -102,7 +102,6 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
                 ),
               ),
             ),
-            const SizedBox(height: 32),
           ],
         ),
       ),

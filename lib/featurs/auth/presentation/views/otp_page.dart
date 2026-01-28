@@ -44,10 +44,8 @@ class _OtpPageState extends State<OtpPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 20),
                 PhoneTextField(phoneController: phoneController),
-
-                // الاختيار يظل ظاهر لغاية ما المستخدم يضغط Continue
                 if (!showOtp) ...[
                   Text(
                     'How do you want to be verified?',
@@ -55,8 +53,6 @@ class _OtpPageState extends State<OtpPage> {
                   ),
                   MyCheckBox(),
                 ],
-
-                // حقل OTP يظهر بعد الضغط على Continue
                 if (showOtp) ...[
                   MyTextField(
                     labelText: 'Verification Code',
@@ -72,7 +68,7 @@ class _OtpPageState extends State<OtpPage> {
                   ),
                 ],
 
-                const Spacer(),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.65),
 
                 CustomButton(
                   icon: Assets.images.svgs.loginArrow,
@@ -95,7 +91,6 @@ class _OtpPageState extends State<OtpPage> {
                   },
                   textColor: AppColors.white,
                 ),
-                const SizedBox(height: 32),
               ],
             );
           },

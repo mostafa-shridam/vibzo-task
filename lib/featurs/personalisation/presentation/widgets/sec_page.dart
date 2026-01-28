@@ -40,7 +40,9 @@ class SecPage extends StatelessWidget {
           text: 'Continue',
           onPressed: () {
             context.go(HomePage.routeName);
+            
           },
+          textColor: AppColors.white,
         ),
         const SizedBox(height: 36),
       ],
